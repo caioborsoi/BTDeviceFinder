@@ -25,12 +25,13 @@ class DeviceDetailViewController: UIViewController, CBCentralManagerDelegate{
     var device: bluetoothDevice!
     var manager: CBCentralManager?
     var savedDevices: [NSManagedObject] = []
+    var deviceID = String()
 
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         title = device.name
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "historyCell")
         signalLbl.text = "intensidade do sinal: \(device.rssi)db"
@@ -42,35 +43,38 @@ class DeviceDetailViewController: UIViewController, CBCentralManagerDelegate{
       guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
         return
       }
-      
-      
 
       let managedContext = appDelegate.persistentContainer.viewContext
       let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "DeviceHistory")
+      fetchRequest.predicate = NSPredicate(format: "id == %@", deviceID)
 
       do {
         savedDevices = try managedContext.fetch(fetchRequest)
+
       } catch let error as NSError {
         print("Could not fetch. \(error), \(error.userInfo)")
       }
     }
     
-    func save(date: String) {
+    func save(id:String, date: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
           return
         }
 
         let managedContext = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "DeviceHistory", in: managedContext)!
+        let connetedDevice = NSManagedObject(entity: entity, insertInto: managedContext)
         let connectedDate = NSManagedObject(entity: entity, insertInto: managedContext)
+        connetedDevice.setValue(id, forKeyPath: "id")
         connectedDate.setValue(date, forKeyPath: "date")
 
 
         do {
-          try managedContext.save()
-          savedDevices.append(connectedDate)
+            try managedContext.save()
+            savedDevices.append(connetedDevice)
+            savedDevices.append(connectedDate)
         } catch let error as NSError {
-          print("Could not save. \(error), \(error.userInfo)")
+            print("Could not save. \(error), \(error.userInfo)")
         }
       }
     
@@ -91,7 +95,7 @@ class DeviceDetailViewController: UIViewController, CBCentralManagerDelegate{
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         let dateString = dateFormatter.string(from: date as Date)
 
-        self.save(date: dateString)
+        self.save(id: deviceID, date: dateString)
         self.tableView.reloadData()
     }
     

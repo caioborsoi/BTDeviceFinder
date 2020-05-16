@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xo0-3q-fW8">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -13,7 +13,7 @@
             <objects>
                 <navigationController id="xo0-3q-fW8" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d32-21-Ws1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -29,7 +29,7 @@
             <objects>
                 <tableViewController id="zlH-RQ-BDx" customClass="DeviceListViewController" customModule="BluetoothFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xxq-0j-x04">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -71,11 +71,11 @@
             <objects>
                 <viewController id="UzY-MR-e7T" customClass="DeviceDetailViewController" customModule="BluetoothFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s6n-KC-mEd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDj-Xy-Z3X">
-                                <rect key="frame" x="20" y="95" width="335" height="20"/>
+                                <rect key="frame" x="20" y="139" width="335" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="ib9-ZY-vG5"/>
                                 </constraints>
@@ -84,7 +84,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxd-UY-5gv">
-                                <rect key="frame" x="147" y="199" width="81" height="60"/>
+                                <rect key="frame" x="147" y="243" width="81" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="x1c-ka-3ny"/>
                                 </constraints>
@@ -95,14 +95,14 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1ap-XH-Hb4">
-                                <rect key="frame" x="0.0" y="333" width="375" height="334"/>
+                                <rect key="frame" x="0.0" y="377" width="375" height="435"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" id="L9b-oN-l9f">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="L9b-oN-l9f" id="8z5-Mw-dFj">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -113,7 +113,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Historico" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tyN-IM-Vei">
-                                <rect key="frame" x="20" y="267" width="335" height="58"/>
+                                <rect key="frame" x="20" y="311" width="335" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="3eR-tx-b1f"/>
                                 </constraints>
@@ -133,7 +133,7 @@
                             <constraint firstItem="cDj-Xy-Z3X" firstAttribute="top" secondItem="DlE-uH-KXf" secondAttribute="top" constant="51" id="gV6-pK-zx8"/>
                             <constraint firstItem="DlE-uH-KXf" firstAttribute="trailing" secondItem="oxd-UY-5gv" secondAttribute="trailing" constant="147" id="muS-Dq-2N5"/>
                             <constraint firstItem="1ap-XH-Hb4" firstAttribute="leading" secondItem="DlE-uH-KXf" secondAttribute="leading" id="tTF-iR-1WT"/>
-                            <constraint firstItem="1ap-XH-Hb4" firstAttribute="bottom" secondItem="DlE-uH-KXf" secondAttribute="bottom" id="xti-ax-7FV"/>
+                            <constraint firstItem="1ap-XH-Hb4" firstAttribute="bottom" secondItem="s6n-KC-mEd" secondAttribute="bottom" id="xti-ax-7FV"/>
                             <constraint firstItem="oxd-UY-5gv" firstAttribute="top" secondItem="cDj-Xy-Z3X" secondAttribute="bottom" constant="84" id="xuk-r8-7Ww"/>
                             <constraint firstItem="DlE-uH-KXf" firstAttribute="trailing" secondItem="tyN-IM-Vei" secondAttribute="trailing" constant="20" id="yHl-QX-LfE"/>
                             <constraint firstItem="tyN-IM-Vei" firstAttribute="top" secondItem="oxd-UY-5gv" secondAttribute="bottom" constant="8" id="yLM-om-iNz"/>

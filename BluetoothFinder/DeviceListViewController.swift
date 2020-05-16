@@ -96,6 +96,7 @@ class DeviceListViewController: UITableViewController, CBCentralManagerDelegate,
             let deviceDetailVC = segue.destination as! DeviceDetailViewController
             manager?.delegate = deviceDetailVC
             deviceDetailVC.device = selectedDevice
+            deviceDetailVC.deviceID = "\(selectedDevice!.peri.identifier)"
             deviceDetailVC.manager = manager
         }
     }
