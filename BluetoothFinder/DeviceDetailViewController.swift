@@ -42,13 +42,9 @@ class DeviceDetailViewController: UIViewController, CBCentralManagerDelegate{
             savedDevices = filterDevice
         }
         
-        if savedDevices.count == 0 {
-            historyLbl.isHidden = true
-            tableView.isHidden = true
-        }else {
-            historyLbl.isHidden = false
-            tableView.isHidden = false
-        }
+        let shouldHide = savedDevices.count == 0
+        historyLbl.isHidden = shouldHide
+        tableView.isHidden = shouldHide
     }
     
     @IBAction func connectBtnPressed(_ sender: Any) {
@@ -65,6 +61,8 @@ class DeviceDetailViewController: UIViewController, CBCentralManagerDelegate{
         
         DataStore.shared.save(id: deviceID, date: Date())
         savedDevices = DataStore.shared.read(predicate: NSPredicate(format: "deviceID == %@", deviceID))!
+        historyLbl.isHidden = false
+        tableView.isHidden = false
         self.tableView.reloadData()
     }
     
