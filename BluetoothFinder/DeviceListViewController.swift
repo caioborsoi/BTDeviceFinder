@@ -22,10 +22,10 @@ class DeviceListViewController: UITableViewController, CBCentralManagerDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        manager = CBCentralManager(delegate: self, queue: nil);
         tableView.tableFooterView = UIView(frame: .zero)
+        manager = CBCentralManager(delegate: self, queue: nil)
     }
-    
+
     func findDevices() {
         searchBtn.title = "Buscando"
         manager?.scanForPeripherals(withServices: nil, options: nil)
@@ -40,9 +40,12 @@ class DeviceListViewController: UITableViewController, CBCentralManagerDelegate,
         manager?.stopScan()
     }
     
-    @IBAction func sendButtonPressed(_ sender: AnyObject) {
-        devices.removeAll()
-        tableView.reloadData()
+    @IBAction func searchButtonPressed(_ sender: AnyObject) {
+        if devices.count > 0 {
+            peripherals.removeAll()
+            devices.removeAll()
+            tableView.reloadData()
+        }
         findDevices()
     }
     
@@ -53,6 +56,7 @@ class DeviceListViewController: UITableViewController, CBCentralManagerDelegate,
             deviceDetailVC.device = selectedDevice
             deviceDetailVC.deviceID = "\(selectedDevice!.peri.identifier)"
             deviceDetailVC.manager = manager
+            deviceDetailVC.previousVC = self
         }
     }
     

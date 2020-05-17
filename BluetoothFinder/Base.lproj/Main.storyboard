@@ -51,7 +51,7 @@
                         <barButtonItem key="backBarButtonItem" title="Voltar" id="KF7-HC-GYZ"/>
                         <barButtonItem key="rightBarButtonItem" title="Buscar" id="aO8-m9-WE4">
                             <connections>
-                                <action selector="sendButtonPressed:" destination="zlH-RQ-BDx" id="sYs-wj-TyN"/>
+                                <action selector="searchButtonPressed:" destination="zlH-RQ-BDx" id="tFu-uN-zRH"/>
                             </connections>
                         </barButtonItem>
                         <connections>

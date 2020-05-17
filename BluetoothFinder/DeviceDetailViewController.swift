@@ -21,6 +21,7 @@ class DeviceDetailViewController: UIViewController, CBCentralManagerDelegate{
     var manager: CBCentralManager?
     var savedDevices: [DeviceModel] = []
     var deviceID = String()
+    var previousVC: DeviceListViewController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,9 @@ class DeviceDetailViewController: UIViewController, CBCentralManagerDelegate{
         tableView.tableFooterView = UIView(frame: .zero)
         signalLbl.text = "intensidade do sinal: \(device.rssi)db"
         setupHistory()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        manager?.delegate = previousVC
     }
     
     func setupHistory() {
@@ -65,8 +69,9 @@ class DeviceDetailViewController: UIViewController, CBCentralManagerDelegate{
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        print("Disconnected to " +  device.peri.name!)
         pairBtn.setTitle("Parear", for: .normal)
+        historyLbl.isHidden = false
+        tableView.isHidden = false
     }
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
