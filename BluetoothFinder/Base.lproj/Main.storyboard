@@ -49,7 +49,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Dispositivos" id="z1u-ds-BUl">
                         <barButtonItem key="backBarButtonItem" title="Voltar" id="KF7-HC-GYZ"/>
-                        <barButtonItem key="rightBarButtonItem" title="Procurar" id="aO8-m9-WE4">
+                        <barButtonItem key="rightBarButtonItem" title="Buscar" id="aO8-m9-WE4">
                             <connections>
                                 <action selector="sendButtonPressed:" destination="zlH-RQ-BDx" id="sYs-wj-TyN"/>
                             </connections>
@@ -59,6 +59,7 @@
                         </connections>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBtn" destination="aO8-m9-WE4" id="2dP-Rg-Xbk"/>
                         <segue destination="UzY-MR-e7T" kind="show" identifier="segueDetail" id="ueX-3W-e10"/>
                     </connections>
                 </tableViewController>
@@ -94,11 +95,20 @@
                                     <action selector="connectBtnPressed:" destination="UzY-MR-e7T" eventType="touchUpInside" id="5cx-CR-Eon"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Histórico" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tyN-IM-Vei">
+                                <rect key="frame" x="20" y="311" width="335" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="AD7-JW-hyO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1ap-XH-Hb4">
                                 <rect key="frame" x="0.0" y="377" width="375" height="435"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" id="L9b-oN-l9f">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" id="L9b-oN-l9f">
                                         <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="L9b-oN-l9f" id="8z5-Mw-dFj">
@@ -112,36 +122,28 @@
                                     <outlet property="delegate" destination="UzY-MR-e7T" id="snm-rc-u2P"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Historico" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tyN-IM-Vei">
-                                <rect key="frame" x="20" y="311" width="335" height="58"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="58" id="3eR-tx-b1f"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="1ap-XH-Hb4" firstAttribute="top" secondItem="tyN-IM-Vei" secondAttribute="bottom" constant="8" id="LdE-iY-zi1"/>
-                            <constraint firstItem="tyN-IM-Vei" firstAttribute="leading" secondItem="DlE-uH-KXf" secondAttribute="leading" constant="20" id="P6W-kB-ifv"/>
+                            <constraint firstAttribute="bottom" secondItem="1ap-XH-Hb4" secondAttribute="bottom" id="76M-nP-yeK"/>
+                            <constraint firstItem="1ap-XH-Hb4" firstAttribute="trailing" secondItem="DlE-uH-KXf" secondAttribute="trailing" id="Gz2-c3-eGI"/>
+                            <constraint firstItem="1ap-XH-Hb4" firstAttribute="leading" secondItem="DlE-uH-KXf" secondAttribute="leading" id="LbN-w1-gzr"/>
                             <constraint firstItem="oxd-UY-5gv" firstAttribute="leading" secondItem="DlE-uH-KXf" secondAttribute="leading" constant="147" id="XSF-oI-DPQ"/>
-                            <constraint firstItem="1ap-XH-Hb4" firstAttribute="trailing" secondItem="DlE-uH-KXf" secondAttribute="trailing" id="Xk6-PR-GeX"/>
                             <constraint firstItem="DlE-uH-KXf" firstAttribute="trailing" secondItem="cDj-Xy-Z3X" secondAttribute="trailing" constant="20" id="ZFY-hx-dhy"/>
+                            <constraint firstItem="tyN-IM-Vei" firstAttribute="top" secondItem="oxd-UY-5gv" secondAttribute="bottom" constant="8" id="bHY-qJ-3je"/>
                             <constraint firstItem="cDj-Xy-Z3X" firstAttribute="leading" secondItem="DlE-uH-KXf" secondAttribute="leading" constant="20" id="baY-XJ-R8J"/>
+                            <constraint firstItem="1ap-XH-Hb4" firstAttribute="top" secondItem="tyN-IM-Vei" secondAttribute="bottom" constant="8" id="f2c-dc-ov3"/>
                             <constraint firstItem="cDj-Xy-Z3X" firstAttribute="top" secondItem="DlE-uH-KXf" secondAttribute="top" constant="51" id="gV6-pK-zx8"/>
                             <constraint firstItem="DlE-uH-KXf" firstAttribute="trailing" secondItem="oxd-UY-5gv" secondAttribute="trailing" constant="147" id="muS-Dq-2N5"/>
-                            <constraint firstItem="1ap-XH-Hb4" firstAttribute="leading" secondItem="DlE-uH-KXf" secondAttribute="leading" id="tTF-iR-1WT"/>
-                            <constraint firstItem="1ap-XH-Hb4" firstAttribute="bottom" secondItem="s6n-KC-mEd" secondAttribute="bottom" id="xti-ax-7FV"/>
+                            <constraint firstItem="DlE-uH-KXf" firstAttribute="trailing" secondItem="tyN-IM-Vei" secondAttribute="trailing" constant="20" id="pNG-ME-PrW"/>
+                            <constraint firstItem="tyN-IM-Vei" firstAttribute="leading" secondItem="DlE-uH-KXf" secondAttribute="leading" constant="20" id="uJI-DF-HeS"/>
                             <constraint firstItem="oxd-UY-5gv" firstAttribute="top" secondItem="cDj-Xy-Z3X" secondAttribute="bottom" constant="84" id="xuk-r8-7Ww"/>
-                            <constraint firstItem="DlE-uH-KXf" firstAttribute="trailing" secondItem="tyN-IM-Vei" secondAttribute="trailing" constant="20" id="yHl-QX-LfE"/>
-                            <constraint firstItem="tyN-IM-Vei" firstAttribute="top" secondItem="oxd-UY-5gv" secondAttribute="bottom" constant="8" id="yLM-om-iNz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DlE-uH-KXf"/>
                     </view>
                     <navigationItem key="navigationItem" title="Dispositivo" id="qXr-h3-8CT"/>
                     <connections>
+                        <outlet property="historyLbl" destination="tyN-IM-Vei" id="ncR-2c-pCi"/>
                         <outlet property="pairBtn" destination="oxd-UY-5gv" id="1FL-jm-3rM"/>
                         <outlet property="signalLbl" destination="cDj-Xy-Z3X" id="xGw-Fy-eA2"/>
                         <outlet property="tableView" destination="1ap-XH-Hb4" id="ruK-MP-xup"/>

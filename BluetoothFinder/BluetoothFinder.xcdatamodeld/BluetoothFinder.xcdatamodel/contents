@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="DeviceHistory" representedClassName="DeviceHistory" syncable="YES" codeGenerationType="class">
-        <attribute name="date" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="String"/>
+    <entity name="DeviceModel" representedClassName="DeviceModel" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="deviceID" attributeType="String"/>
     </entity>
     <elements>
-        <element name="DeviceHistory" positionX="-63" positionY="-18" width="128" height="73"/>
+        <element name="DeviceModel" positionX="-63" positionY="-18" width="128" height="73"/>
     </elements>
 </model>

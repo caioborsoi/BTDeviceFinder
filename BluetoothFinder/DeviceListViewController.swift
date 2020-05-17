@@ -9,56 +9,54 @@
 import UIKit
 import CoreBluetooth
 
-
-struct bluetoothDevice {
-    
-    var peri: CBPeripheral
-    var rssi: NSNumber
-    var name: String {
-        self.peri.name ?? "Dispositivo Sem Nome"
-    }
-    
-    init(peri: CBPeripheral, rssi: NSNumber) {
-        
-        self.peri = peri
-        self.rssi = rssi
-    }
-}
-
 class DeviceListViewController: UITableViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
+    
+    @IBOutlet weak var searchBtn: UIBarButtonItem!
     
     var peripherals:[CBPeripheral] = []
     var manager: CBCentralManager?
-    var devices:[bluetoothDevice] = []
-    var selectedDevice: bluetoothDevice?
+    var devices:[BTDeviceModel] = []
+    var selectedDevice: BTDeviceModel?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         manager = CBCentralManager(delegate: self, queue: nil);
+        tableView.tableFooterView = UIView(frame: .zero)
     }
     
-    func findDivices() {
+    func findDevices() {
+        searchBtn.title = "Buscando"
         manager?.scanForPeripherals(withServices: nil, options: nil)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-            self.stopScanForBLEDevices()
+            self.searchBtn.title = "Buscar"
+            self.stopSearch()
         }
     }
     
-    func stopScanForBLEDevices() {
+    func stopSearch() {
         manager?.stopScan()
     }
     
     @IBAction func sendButtonPressed(_ sender: AnyObject) {
         devices.removeAll()
         tableView.reloadData()
-        findDivices()
+        findDevices()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueDetail"{
+            let deviceDetailVC = segue.destination as! DeviceDetailViewController
+            manager?.delegate = deviceDetailVC
+            deviceDetailVC.device = selectedDevice
+            deviceDetailVC.deviceID = "\(selectedDevice!.peri.identifier)"
+            deviceDetailVC.manager = manager
+        }
     }
     
     // MARK: - Table view data source
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -79,30 +77,14 @@ class DeviceListViewController: UITableViewController, CBCentralManagerDelegate,
         return cell
     }
     
-        override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            //let peripheral = peripherals[indexPath.row]
-            let device = devices[indexPath.row]
-            
-            selectedDevice = device
-            
-
-            //manager?.connect(peripheral, options: nil)
-            //performSegue
-            performSegue(withIdentifier: "segueDetail", sender: nil)
-        }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueDetail"{
-            let deviceDetailVC = segue.destination as! DeviceDetailViewController
-            manager?.delegate = deviceDetailVC
-            deviceDetailVC.device = selectedDevice
-            deviceDetailVC.deviceID = "\(selectedDevice!.peri.identifier)"
-            deviceDetailVC.manager = manager
-        }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let device = devices[indexPath.row]
+        selectedDevice = device
+        
+        performSegue(withIdentifier: "segueDetail", sender: nil)
     }
     
-    // MARK: - CBCentralManagerDelegate Methods
-    
+    // MARK: - CBCentralManagerDelegate
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if(!peripherals.contains(peripheral)) {
             peripherals.append(peripheral)
@@ -111,7 +93,7 @@ class DeviceListViewController: UITableViewController, CBCentralManagerDelegate,
         }
         self.tableView.reloadData()
     }
-
+    
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         print(central.state)
     }

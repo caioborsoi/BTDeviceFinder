@@ -12,72 +12,40 @@ import CoreData
 
 class DeviceDetailViewController: UIViewController, CBCentralManagerDelegate{
     
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        print(central.state)
-    }
-    
-
     @IBOutlet weak var signalLbl: UILabel!
     @IBOutlet weak var pairBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var historyLbl: UILabel!
     
-    
-    var device: bluetoothDevice!
+    var device: BTDeviceModel!
     var manager: CBCentralManager?
-    var savedDevices: [NSManagedObject] = []
+    var savedDevices: [DeviceModel] = []
     var deviceID = String()
-
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = device.name
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "historyCell")
+        tableView.tableFooterView = UIView(frame: .zero)
         signalLbl.text = "intensidade do sinal: \(device.rssi)db"
+        setupHistory()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-      super.viewWillAppear(animated)
-
-      guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-        return
-      }
-
-      let managedContext = appDelegate.persistentContainer.viewContext
-      let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "DeviceHistory")
-      fetchRequest.predicate = NSPredicate(format: "id == %@", deviceID)
-
-      do {
-        savedDevices = try managedContext.fetch(fetchRequest)
-
-      } catch let error as NSError {
-        print("Could not fetch. \(error), \(error.userInfo)")
-      }
+    func setupHistory() {
+        if let filterDevice = DataStore.shared.read(predicate: NSPredicate(format: "deviceID == %@", deviceID)){
+            
+            savedDevices = filterDevice
+        }
+        
+        if savedDevices.count == 0 {
+            historyLbl.isHidden = true
+            tableView.isHidden = true
+        }else {
+            historyLbl.isHidden = false
+            tableView.isHidden = false
+        }
     }
-    
-    func save(id:String, date: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-          return
-        }
-
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "DeviceHistory", in: managedContext)!
-        let connetedDevice = NSManagedObject(entity: entity, insertInto: managedContext)
-        let connectedDate = NSManagedObject(entity: entity, insertInto: managedContext)
-        connetedDevice.setValue(id, forKeyPath: "id")
-        connectedDate.setValue(date, forKeyPath: "date")
-
-
-        do {
-            try managedContext.save()
-            savedDevices.append(connetedDevice)
-            savedDevices.append(connectedDate)
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-      }
-    
     
     @IBAction func connectBtnPressed(_ sender: Any) {
         if device.peri.state == CBPeripheralState.connected{
@@ -87,15 +55,12 @@ class DeviceDetailViewController: UIViewController, CBCentralManagerDelegate{
         }
     }
     
+    // MARK: - CBCentralManagerDelegate
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        print("Connected to " +  device.peri.name!)
         pairBtn.setTitle("Desparear", for: .normal)
-        let date = NSDate()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
-        let dateString = dateFormatter.string(from: date as Date)
-
-        self.save(id: deviceID, date: dateString)
+        
+        DataStore.shared.save(id: deviceID, date: Date())
+        savedDevices = DataStore.shared.read(predicate: NSPredicate(format: "deviceID == %@", deviceID))!
         self.tableView.reloadData()
     }
     
@@ -105,24 +70,37 @@ class DeviceDetailViewController: UIViewController, CBCentralManagerDelegate{
     }
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        let alert = UIAlertController(title: "Erro ao tentar connectar", message: "tentar conectar novamente?", preferredStyle: .alert)
+        
+        let connectAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+            self.manager?.connect(self.device.peri, options: nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel)
+        alert.addAction(connectAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
         print(error!)
+    }
+    
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        print(central.state)
     }
 }
 
 // MARK: - UITableViewDataSource
 extension DeviceDetailViewController: UITableViewDataSource {
-
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return savedDevices.count
-  }
-
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-    let deviceHistory = savedDevices[indexPath.row]
-    let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath)
-    cell.textLabel?.text = deviceHistory.value(forKeyPath: "date") as? String
-
-    return cell
-  }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return savedDevices.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let deviceHistory = savedDevices[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath)
+        cell.textLabel?.text = (deviceHistory.value(forKeyPath: "date") as? Date)?.toString()
+        
+        return cell
+    }
 }
-
