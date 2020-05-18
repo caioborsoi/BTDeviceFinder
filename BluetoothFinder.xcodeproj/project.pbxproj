@@ -12,8 +12,8 @@
 		F228C1F82467243400CFCA17 /* DeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F228C1F72467243400CFCA17 /* DeviceListViewController.swift */; };
 		F228C1FB2467243400CFCA17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F228C1F92467243400CFCA17 /* Main.storyboard */; };
 		F228C1FE2467243400CFCA17 /* BluetoothFinder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F228C1FC2467243400CFCA17 /* BluetoothFinder.xcdatamodeld */; };
-		F228C2002467243B00CFCA17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F228C1FF2467243B00CFCA17 /* Assets.xcassets */; };
 		F228C2032467243B00CFCA17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F228C2012467243B00CFCA17 /* LaunchScreen.storyboard */; };
+		F231DDBC247233DA00D0B98D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F231DDBB247233DA00D0B98D /* Assets.xcassets */; };
 		F244358C2470B28600AD6262 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F244358B2470B28600AD6262 /* DataStore.swift */; };
 		F244358E2471886C00AD6262 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F244358D2471886C00AD6262 /* StringExtension.swift */; };
 		F244359224718E7500AD6262 /* BTDeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F244359124718E7500AD6262 /* BTDeviceModel.swift */; };
@@ -30,9 +30,9 @@
 		F228C1F72467243400CFCA17 /* DeviceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListViewController.swift; sourceTree = "<group>"; };
 		F228C1FA2467243400CFCA17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F228C1FD2467243400CFCA17 /* BluetoothFinder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BluetoothFinder.xcdatamodel; sourceTree = "<group>"; };
-		F228C1FF2467243B00CFCA17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F228C2022467243B00CFCA17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F228C2042467243B00CFCA17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F231DDBB247233DA00D0B98D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../Desktop/Assets.xcassets; sourceTree = "<group>"; };
 		F244358B2470B28600AD6262 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		F244358D2471886C00AD6262 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		F244359124718E7500AD6262 /* BTDeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTDeviceModel.swift; sourceTree = "<group>"; };
@@ -59,7 +59,7 @@
 				F228C1F32467243400CFCA17 /* AppDelegate.swift */,
 				F2B7DD4F247223090031B1D0 /* BTFStrings.swift */,
 				F2B7DD51247226C00031B1D0 /* Localizable.strings */,
-				F228C1FF2467243B00CFCA17 /* Assets.xcassets */,
+				F231DDBB247233DA00D0B98D /* Assets.xcassets */,
 				F228C2012467243B00CFCA17 /* LaunchScreen.storyboard */,
 				F228C2042467243B00CFCA17 /* Info.plist */,
 				F228C1FC2467243400CFCA17 /* BluetoothFinder.xcdatamodeld */,
@@ -199,8 +199,8 @@
 			files = (
 				F228C2032467243B00CFCA17 /* LaunchScreen.storyboard in Resources */,
 				F2B7DD52247226C00031B1D0 /* Localizable.strings in Resources */,
-				F228C2002467243B00CFCA17 /* Assets.xcassets in Resources */,
 				F228C1FB2467243400CFCA17 /* Main.storyboard in Resources */,
+				F231DDBC247233DA00D0B98D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
