@@ -15,11 +15,10 @@ struct BTDeviceModel {
     var peri: CBPeripheral
     var rssi: NSNumber
     var name: String {
-        self.peri.name ?? "Dispositivo Sem Nome"
+        self.peri.name ?? BTFStrings.kPeripheralNoName.localized
     }
     
     init(peri: CBPeripheral, rssi: NSNumber) {
-        
         self.peri = peri
         self.rssi = rssi
     }

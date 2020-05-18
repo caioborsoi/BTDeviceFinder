@@ -1,0 +1,47 @@
+/* 
+ Localizable.strings
+ BluetoothFinder
+ 
+ Created by Caio Borsoi on 5/17/20.
+ Copyright © 2020 Caio Borsoi. All rights reserved.
+ */
+
+//MARK: - DeviceDetail
+
+"kCellIdentifier" = "historyCell";
+"kReusableCellKeyPath" = "date";
+"kTitlePairDisconnected" = "Desparear";
+"kTitlePairConnect" = "Parear";
+"kFilterDevice" = "deviceID == %@";
+"kAlertTitleDetail" = "Erro ao tentar connectar";
+"kAlertMessageDetail" = "tentar conectar novamente?";
+"kOk" = "OK";
+"kCancel" = "Cancelar";
+
+//MARK: - DeviceList
+
+"kReusableCellIdentifier" = "bluetoothDeviceCell";
+"kSegueDetail" = "segueDetail";
+"kSearch" = "Buscar";
+"kSearching" = "Buscando";
+"kAttention" = "Atenção";
+"kBTTurnedOff" = "seu bluetooth está desligado, por favor ligue";
+"kBTNotAuthorized" = "por favor, autoriza BluetoothFinder a utilizar serviços bluetooth";
+
+//MARK: - DataStore
+
+"kEntityName" = "DeviceModel";
+"kErrorTitle" = "Could not fetch. ";
+
+//MARK: - BTDeviceModel
+
+"kPeripheralNoName" = "Dispositivo Sem Nome";
+
+//MARK: - CBCentralManagerDelegate - States
+
+"kPoweredOn" = "Powered On";
+"kPoweredOff" = "Powered Off";
+"kResetting" = "Resetting";
+"kUnauthorized" = "Unauthorized";
+"KUnsupported" = "Unsupported";
+"kUnknown" = "Unknown";

@@ -10,23 +10,25 @@ import UIKit
 import CoreData
 
 class DataStore {
-    static var shared = DataStore()
+    
     let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
+    static var shared = DataStore()
     
     func save(id:String, date: Date) {
-        let entity = NSEntityDescription.entity(forEntityName: "DeviceModel", in: managedContext)!
+        let entity = NSEntityDescription.entity(forEntityName: BTFStrings.kEntityName.localized, in: managedContext)!
         let dm = DeviceModel(entity: entity, insertInto: managedContext)
         dm.date = date
         dm.deviceID = id
         do {
             try managedContext.save()
         } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+            print("\(BTFStrings.kErrorTitle.localized)\(error), \(error.userInfo)")
         }
     }
     
     func read(predicate: NSPredicate?) -> [DeviceModel]?{
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "DeviceModel")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: BTFStrings.kEntityName.localized)
         if let predicate = predicate {
             fetchRequest.predicate = predicate
         }
@@ -40,7 +42,7 @@ class DataStore {
             }
             return finalModel.sorted(by: { $0.date! > $1.date! })
         } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+            print("\(BTFStrings.kErrorTitle.localized)\(error), \(error.userInfo)")
             return nil
         }
     }

@@ -18,25 +18,25 @@ class DeviceListViewController: UITableViewController, CBCentralManagerDelegate,
     var devices:[BTDeviceModel] = []
     var selectedDevice: BTDeviceModel?
     
+    let kNumberOfSections = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.tableFooterView = UIView(frame: .zero)
         manager = CBCentralManager(delegate: self, queue: nil)
     }
 
-    func findDevices() {
-        searchBtn.title = "Buscando"
+    private func findDevices() {
+        searchBtn.title = BTFStrings.kSearching.localized
         manager?.scanForPeripherals(withServices: nil, options: nil)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-            self.searchBtn.title = "Buscar"
+            self.searchBtn.title = BTFStrings.kSearch.localized
             self.stopSearch()
         }
     }
     
-    func stopSearch() {
+    private func stopSearch() {
         manager?.stopScan()
     }
     
@@ -50,45 +50,43 @@ class DeviceListViewController: UITableViewController, CBCentralManagerDelegate,
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueDetail"{
+        if segue.identifier == BTFStrings.kSegueDetail.localized {
+            guard let device = selectedDevice else { return }
             let deviceDetailVC = segue.destination as! DeviceDetailViewController
             manager?.delegate = deviceDetailVC
-            deviceDetailVC.device = selectedDevice
-            deviceDetailVC.deviceID = "\(selectedDevice!.peri.identifier)"
+            deviceDetailVC.device = device
+            deviceDetailVC.deviceID = "\(device.peri.identifier)"
             deviceDetailVC.manager = manager
             deviceDetailVC.previousVC = self
         }
     }
     
-    // MARK: - Table view data source
+    // MARK: - UITableViewDataSource
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return kNumberOfSections
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return devices.count
     }
-    
-    
+        
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "bluetoothDeviceCell", for: indexPath)
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: BTFStrings.kReusableCellIdentifier.localized, for: indexPath)
         let device = devices[indexPath.row]
-        
         cell.textLabel?.text = device.name
         cell.textLabel?.text?.append("\(device.rssi)")
-        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let device = devices[indexPath.row]
         selectedDevice = device
-        
-        performSegue(withIdentifier: "segueDetail", sender: nil)
+        performSegue(withIdentifier: BTFStrings.kSegueDetail.localized, sender: nil)
     }
     
     // MARK: - CBCentralManagerDelegate
+    
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if(!peripherals.contains(peripheral)) {
             peripherals.append(peripheral)
@@ -99,7 +97,28 @@ class DeviceListViewController: UITableViewController, CBCentralManagerDelegate,
     }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        print(central.state)
+        switch central.state {
+        case .poweredOn:
+            print(BTFStrings.kPoweredOn.localized)
+        case .poweredOff:
+            print(BTFStrings.kPoweredOff.localized)
+            popupAlert(title: BTFStrings.kAttention.localized, message: BTFStrings.kBTTurnedOff.localized, actionTitles: [BTFStrings.kOk.localized], actions: [{okAction in
+                self.dismiss(animated: true, completion: nil)
+                }])
+        case .resetting:
+            print(BTFStrings.kResetting.localized)
+        case .unauthorized:
+            print(BTFStrings.kUnauthorized.localized)
+            popupAlert(title: BTFStrings.kAttention.localized, message: BTFStrings.kBTNotAuthorized.localized, actionTitles: [BTFStrings.kOk.localized], actions: [{okAction in
+                self.dismiss(animated: true, completion: nil)
+                }])
+        case .unsupported:
+            print(BTFStrings.KUnsupported.localized)
+        case .unknown:
+            print(BTFStrings.kUnknown.localized)
+        default:
+            print(central.state)
+            break;
+        }
     }
 }
-

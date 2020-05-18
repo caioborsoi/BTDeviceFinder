@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B2747C024720CDF00FEB480 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2747BF24720CDF00FEB480 /* DateExtension.swift */; };
 		F228C1F42467243400CFCA17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F228C1F32467243400CFCA17 /* AppDelegate.swift */; };
 		F228C1F82467243400CFCA17 /* DeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F228C1F72467243400CFCA17 /* DeviceListViewController.swift */; };
 		F228C1FB2467243400CFCA17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F228C1F92467243400CFCA17 /* Main.storyboard */; };
@@ -14,12 +15,16 @@
 		F228C2002467243B00CFCA17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F228C1FF2467243B00CFCA17 /* Assets.xcassets */; };
 		F228C2032467243B00CFCA17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F228C2012467243B00CFCA17 /* LaunchScreen.storyboard */; };
 		F244358C2470B28600AD6262 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F244358B2470B28600AD6262 /* DataStore.swift */; };
-		F244358E2471886C00AD6262 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F244358D2471886C00AD6262 /* Extension.swift */; };
+		F244358E2471886C00AD6262 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F244358D2471886C00AD6262 /* StringExtension.swift */; };
 		F244359224718E7500AD6262 /* BTDeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F244359124718E7500AD6262 /* BTDeviceModel.swift */; };
 		F273DB80247018D500009423 /* DeviceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F273DB7F247018D500009423 /* DeviceDetailViewController.swift */; };
+		F2B7DD4E247222130031B1D0 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B7DD4D247222130031B1D0 /* ViewControllerExtension.swift */; };
+		F2B7DD50247223090031B1D0 /* BTFStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B7DD4F247223090031B1D0 /* BTFStrings.swift */; };
+		F2B7DD52247226C00031B1D0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F2B7DD51247226C00031B1D0 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B2747BF24720CDF00FEB480 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		F228C1F02467243400CFCA17 /* BluetoothFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BluetoothFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F228C1F32467243400CFCA17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F228C1F72467243400CFCA17 /* DeviceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListViewController.swift; sourceTree = "<group>"; };
@@ -29,9 +34,12 @@
 		F228C2022467243B00CFCA17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F228C2042467243B00CFCA17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F244358B2470B28600AD6262 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
-		F244358D2471886C00AD6262 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		F244358D2471886C00AD6262 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		F244359124718E7500AD6262 /* BTDeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTDeviceModel.swift; sourceTree = "<group>"; };
 		F273DB7F247018D500009423 /* DeviceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailViewController.swift; sourceTree = "<group>"; };
+		F2B7DD4D247222130031B1D0 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		F2B7DD4F247223090031B1D0 /* BTFStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTFStrings.swift; sourceTree = "<group>"; };
+		F2B7DD51247226C00031B1D0 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +53,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B2747B924720C8800FEB480 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F228C1F32467243400CFCA17 /* AppDelegate.swift */,
+				F2B7DD4F247223090031B1D0 /* BTFStrings.swift */,
+				F2B7DD51247226C00031B1D0 /* Localizable.strings */,
+				F228C1FF2467243B00CFCA17 /* Assets.xcassets */,
+				F228C2012467243B00CFCA17 /* LaunchScreen.storyboard */,
+				F228C2042467243B00CFCA17 /* Info.plist */,
+				F228C1FC2467243400CFCA17 /* BluetoothFinder.xcdatamodeld */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0B2747BB24720CA000FEB480 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F228C1F72467243400CFCA17 /* DeviceListViewController.swift */,
+				F273DB7F247018D500009423 /* DeviceDetailViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0B2747BC24720CAB00FEB480 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				F228C1F92467243400CFCA17 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		0B2747BD24720CB700FEB480 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F244359124718E7500AD6262 /* BTDeviceModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0B2747BE24720CC000FEB480 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0B2747BF24720CDF00FEB480 /* DateExtension.swift */,
+				F244358D2471886C00AD6262 /* StringExtension.swift */,
+				F2B7DD4D247222130031B1D0 /* ViewControllerExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0B2747C124720D5B00FEB480 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				F244358B2470B28600AD6262 /* DataStore.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		F228C1E72467243400CFCA17 = {
 			isa = PBXGroup;
 			children = (
@@ -64,17 +129,12 @@
 		F228C1F22467243400CFCA17 /* BluetoothFinder */ = {
 			isa = PBXGroup;
 			children = (
-				F228C1F32467243400CFCA17 /* AppDelegate.swift */,
-				F228C1F72467243400CFCA17 /* DeviceListViewController.swift */,
-				F273DB7F247018D500009423 /* DeviceDetailViewController.swift */,
-				F244359124718E7500AD6262 /* BTDeviceModel.swift */,
-				F244358D2471886C00AD6262 /* Extension.swift */,
-				F244358B2470B28600AD6262 /* DataStore.swift */,
-				F228C1F92467243400CFCA17 /* Main.storyboard */,
-				F228C1FF2467243B00CFCA17 /* Assets.xcassets */,
-				F228C2012467243B00CFCA17 /* LaunchScreen.storyboard */,
-				F228C2042467243B00CFCA17 /* Info.plist */,
-				F228C1FC2467243400CFCA17 /* BluetoothFinder.xcdatamodeld */,
+				0B2747BB24720CA000FEB480 /* ViewControllers */,
+				0B2747BC24720CAB00FEB480 /* Storyboards */,
+				0B2747C124720D5B00FEB480 /* CoreData */,
+				0B2747BD24720CB700FEB480 /* Models */,
+				0B2747BE24720CC000FEB480 /* Extensions */,
+				0B2747B924720C8800FEB480 /* Resources */,
 			);
 			path = BluetoothFinder;
 			sourceTree = "<group>";
@@ -138,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F228C2032467243B00CFCA17 /* LaunchScreen.storyboard in Resources */,
+				F2B7DD52247226C00031B1D0 /* Localizable.strings in Resources */,
 				F228C2002467243B00CFCA17 /* Assets.xcassets in Resources */,
 				F228C1FB2467243400CFCA17 /* Main.storyboard in Resources */,
 			);
@@ -151,10 +212,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F228C1F82467243400CFCA17 /* DeviceListViewController.swift in Sources */,
+				0B2747C024720CDF00FEB480 /* DateExtension.swift in Sources */,
+				F2B7DD4E247222130031B1D0 /* ViewControllerExtension.swift in Sources */,
 				F273DB80247018D500009423 /* DeviceDetailViewController.swift in Sources */,
 				F228C1F42467243400CFCA17 /* AppDelegate.swift in Sources */,
-				F244358E2471886C00AD6262 /* Extension.swift in Sources */,
+				F244358E2471886C00AD6262 /* StringExtension.swift in Sources */,
 				F244359224718E7500AD6262 /* BTDeviceModel.swift in Sources */,
+				F2B7DD50247223090031B1D0 /* BTFStrings.swift in Sources */,
 				F244358C2470B28600AD6262 /* DataStore.swift in Sources */,
 				F228C1FE2467243400CFCA17 /* BluetoothFinder.xcdatamodeld in Sources */,
 			);
@@ -302,7 +366,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DZW5Z67H5V;
-				INFOPLIST_FILE = BluetoothFinder/Info.plist;
+				INFOPLIST_FILE = BluetoothFinder/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -321,7 +385,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DZW5Z67H5V;
-				INFOPLIST_FILE = BluetoothFinder/Info.plist;
+				INFOPLIST_FILE = BluetoothFinder/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
